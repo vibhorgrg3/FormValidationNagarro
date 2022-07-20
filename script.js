@@ -47,7 +47,7 @@ $("document").ready(function () {
         else {
             $('#emailvalidation').hide();
             $("#email").removeClass('text-danger bg-danger p-2  bg-opacity-10');
-            passValid = true;
+            emailValid = true;
         }
     }
 
@@ -85,12 +85,27 @@ $("document").ready(function () {
     $('input').keyup(activateSubmit);
 
     function activateSubmit() {
-        if (usrValid && passValid && cnPassValid) {
-            $('#submitvalidation').removeClass('disabled')
+
+        if (usrValid && passValid && cnPassValid && emailValid) {
+            $('#submitvalidation').removeClass('disabled');
         }
         else {
-            $('#submitvalidation').addClass('disabled')
+            $('#submitvalidation').addClass('disabled');
         }
+
+
+        $('#submitvalidation').click(function () {
+            confirmPassValidator();
+            passwordValidator();
+            emailValidator();
+            usernameValidator();
+            if (usrValid && passValid && cnPassValid && emailValid) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
     }
 
 
